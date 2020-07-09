@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shop.Web.Data;
 using Shop.Web.Data.Entities;
+using Shop.Web.Helpers;
 
 namespace Shop.Web
 {
@@ -47,9 +48,13 @@ namespace Shop.Web
             //Transient se usa y se destruye
             services.AddTransient<SeedDb>();
 
-            //Inyeccion del Repositorio
+            //Inyeccion de Repositorios
             //Scoped queda para reutilizar
-            services.AddScoped<IRepository, Repository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<ICountryRepository, CountryRepository>();
+
+            //Helpers
+            services.AddScoped<IUserHelper, UserHelper>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
