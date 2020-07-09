@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -27,11 +22,19 @@ namespace Shop.Web
         public void ConfigureServices(IServiceCollection services)
         {
 
-            //Conexion a la DB
+            //Inyeccion de la base de datos
             services.AddDbContext<DataContext>(cfg =>
             {
                 cfg.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            //Inyeccion de la semilla
+            //Transient se usa y se destruye
+            services.AddTransient<SeedDb>();
+
+            //Inyeccion del Repositorio
+            //Scoped queda para reutilizar
+            services.AddScoped<IRepository, Repository>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
