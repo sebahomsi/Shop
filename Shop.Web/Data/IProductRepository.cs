@@ -1,9 +1,11 @@
-﻿using Shop.Web.Data.Entities;
+﻿using System.Linq;
+using Shop.Web.Data.Entities;
 
 namespace Shop.Web.Data
 {
     public interface IProductRepository : IGenericRepository<Product>
     {
+        IQueryable<Product> GetAllWithUsers();
     }
 
 }

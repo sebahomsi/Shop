@@ -63,6 +63,8 @@ namespace Shop.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddCors();
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -84,6 +86,10 @@ namespace Shop.Web
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseCookiePolicy();
+            app.UseCors(options =>
+            {
+                options.WithOrigins("http://localhost:4200").AllowAnyMethod();
+            });
 
             app.UseMvc(routes =>
             {
