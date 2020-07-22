@@ -1,4 +1,6 @@
-﻿namespace Shop.Web.Data.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Shop.Web.Data.Entities
 {
     using Microsoft.AspNetCore.Identity;
 
@@ -8,5 +10,7 @@
 
         public string LastName { get; set; }
 
+        [Display(Name = "Full Name")]
+        public string FullName => $"{this.FirstName} {this.LastName}";
     }
 }

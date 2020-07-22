@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 
-namespace Shop.Web.Data
+namespace Shop.Web.Data.Repositories
 {
     public interface IGenericRepository<T> where T : class
     {

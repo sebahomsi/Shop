@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Shop.Web.Data.Entities;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Shop.Web.Data.Entities;
 
-namespace Shop.Web.Data
+namespace Shop.Web.Data.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class, IEntity
     {
